@@ -33,7 +33,7 @@ public class VendorControllerTest {
                 ));
 
         webTestClient.get()
-                .uri("/api/v1/vendors/")
+                .uri(VendorController.BASE_URL)
                 .exchange()
                 .expectBodyList(Vendor.class)
                 .hasSize(2);
@@ -46,7 +46,7 @@ public class VendorControllerTest {
                 .willReturn(Mono.just(Vendor.builder().firstName("Lucy").lastName("Carter").build()));
 
         webTestClient.get()
-                .uri("/api/v1/vendors/someid")
+                .uri(VendorController.BASE_URL + "/someid")
                 .exchange()
                 .expectBody(Vendor.class);
     }

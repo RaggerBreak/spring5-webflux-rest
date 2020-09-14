@@ -11,18 +11,20 @@ import reactor.core.publisher.Mono;
 @RestController
 public class VendorController {
 
+    public static final String BASE_URL = "/api/v1/vendors";
+
     private final VendorRepository vendorRepository;
 
     public VendorController(VendorRepository vendorRepository) {
         this.vendorRepository = vendorRepository;
     }
 
-    @GetMapping("/api/v1/vendors")
+    @GetMapping(BASE_URL)
     public Flux<Vendor> list(){
         return vendorRepository.findAll();
     }
 
-    @GetMapping("/api/v1/vendors/{id}")
+    @GetMapping(BASE_URL + "/{id}")
     public Mono<Vendor> getById(@PathVariable String id){
         return vendorRepository.findById(id);
     }
